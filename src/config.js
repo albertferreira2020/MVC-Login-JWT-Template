@@ -15,7 +15,7 @@ module.exports = {
 
     options: {
         port: 1433,//49161,
-        database: 'Portfolium',
+        database: 'DataBase',
         //connectionTimeout : 150000,
         instancename: 'SQLEXPRESS'
       }
