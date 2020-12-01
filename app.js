@@ -10,8 +10,8 @@ const fs = require('fs');
 const https = require('https');
 
 const options = {
-  key  : fs.readFileSync('certificado/private.key'),
-  cert : fs.readFileSync('certificado/certificate.crt')
+  key  : fs.readFileSync('certified/private.key'),
+  cert : fs.readFileSync('certified/certificate.crt')
 };
 
 
