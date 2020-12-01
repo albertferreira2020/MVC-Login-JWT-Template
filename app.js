@@ -1,0 +1,41 @@
+
+const compression = require('compression')
+const express = require('express')
+const path = require('path')
+const Router = require('./src/routes/routes.route')
+var bodyParser = require('body-parser');
+const app = express();
+
+const fs = require('fs');
+const https = require('https');
+
+const options = {
+  key  : fs.readFileSync('certificado/private.key'),
+  cert : fs.readFileSync('certificado/certificate.crt')
+};
+
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(Router);
+ 
+ 
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', "*");
+  res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+  
+  
+app.use(compression());
+app.disable('x-powered-by');
+app.use(express.static(path.join(__dirname, 'src/views')));
+ 
+ //app.listen(5002, function () {
+ //   console.log('Server is running port 5002..');
+ //});
+
+ https.createServer(options, app).listen(5002, function () {
+  console.log('Server is running 5002..');
+ })

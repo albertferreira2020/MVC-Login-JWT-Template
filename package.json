@@ -1,0 +1,22 @@
+{
+  "name": "contratante",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Albert Ferreira",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "dotenv-safe": "^8.2.0",
+    "express": "^4.17.1",
+    "iconv-lite": "^0.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "mssql": "^3.3.0",
+    "nodemailer": "^6.4.16",
+    "oracledb": "^3.1.2"
+  }
+}

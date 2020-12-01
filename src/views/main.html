@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Cobrança - Unimed Gerais de Minas</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+
+
+
+
+
+
+
+
+      <div class="loading"><div class="spinner"></div></div>
+
+
+
+
+
+      <div class="modal modal-lg" tabindex="-1" role="dialog">
+          <div class="modal-dialog-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                 <h5 class="modal-title" style="font-size: 12px"></h5> 
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+
+              <div class="row">
+              <div class="col-6">
+              <div id='gridtitulos'></div>
+              </div>
+
+              <div class="col-6">
+              <div id='gridhistorico' style="overflow: auto;height: 200px;"></div>
+              </div>
+
+
+              </div>
+
+              <hr>
+
+
+
+              <input type="hidden" id="modalidcliente" value="modalidcliente"></input>
+              histórico de Observações:
+              <br>
+              <textarea id="obs" name="obs" style="border: 1px;border-color: #ccc;border-style: solid; width:100%" required></textarea>
+              
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="SaveHistorico()"><i class="fa fa-floppy-o" aria-hidden="true"> </i> Incluir Observação</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+		
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	          <i class="fa fa-bars" style="color:#ccc"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+	  		<h1 align="center"><a href="/main" class="logo"><img src="img/selo.png" width="140px"></img></a></h1>
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a ><span class="fa fa-user mr-3"></span> Destinatários</a>
+          </li>
+          <li>
+              <a onclick="SaveClients()" style="cursor: pointer;"><span class="fa fa-sticky-note mr-3"></span> Mensagem</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Enviar</a>
+          </li>
+           <li>
+            <a href="/logout"><span class="fa fa-power-off mr-3"></span> Sair</a>
+          </li>
+        </ul>
+
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5" >
+        <h5 class="mb-2">Lista de Beneficiários</h5>
+        <p>Esta é uma listagem de beneficiários que deverá ser parametrizada pelo menu acima</p>
+        
+        <form onsubmit="getclients()">
+        <!--  Escolha o período: -->
+        <input type="date" id="inicio" name="inicio" style="width:141px" required> à
+        <input type="date" id="fim" name="fim" style="width:141px" required>
+
+        <input type="text" id="cgccpf" name="cgccpf" placeholder="CPF/CNPJ">
+
+ 
+        <select name="contrato" id="contrato" style="width:141px">
+        <option value="">Por Contrato</option>
+        <option value="-1895935840">Contratos Patrocinados</option>
+        <option value="-1895936043">Contratos Individuais</option>
+        <option value="-1895936042">Contratos Coletivos</option>
+        <option value="-1895936130">Contratos de Beneficiários</option>
+        <option value="-1895936041">Contratos de Custo Operacional</option> 
+        </select>
+
+
+        <select name="carteira" id="carteira" style="width:160px">
+        <option value="">Selecione a Carteira</option>
+        <option value="Ct Reg Carteira Unicred Pj Sem Lotação">Ct Reg Carteira Unicred Pj Sem Lotação</option>
+        <option value="Ct Carteira Itau Pf">Ct Carteira Itau Pf</option>
+        <option value="Ct Reg Carteira Unicred Pj Com Lotação">Ct Reg Carteira Unicred Pj Com Lotação</option>
+      </select>
+
+        <input type="number" id="dias" name="dias"  style="width:60px" placeholder="dias em aberto" value="60">
+
+        <button type="submit" class="btn btn-primary btn-sm" ><span class="fa fa-search mr-3"></span>Buscar</button>
+        
+      </form>
+        
+        <hr>
+
+        <ul class="list-group shadowbox">
+            <li class="list-group-item active"><span class="fa fa-user mr-3"></span><b>Listagem de Beneficiários</b> <span id="registros" class="pull-right"></span> </li>
+
+
+            <li id="ligridclient" class="list-group-item" style="overflow-y: auto">
+              
+
+              <table class="table table-striped table-hover " style="overflow: auto">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Defina os filtros acima para busca de clientes</th>
+ 
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>   
+
+
+            </li>
+           
+                
+            <li class="list-group-item"><button type="button" class="btn btn-warning pull-right btn-sm" onclick="SaveClients()"  > <span class="fa fa-paper-plane mr-3"></span> Mensagem</button></li>
+
+          </ul>
+
+
+          <hr>
+
+          <div id='autenticacao' align='center' style="font-size: 10px;opacity:0.5"></div>
+
+       </div>
+
+       
+
+    </div>
+         
+
+    <script src="js/config.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/clients.js"></script>
+
+  </body>
+</html>

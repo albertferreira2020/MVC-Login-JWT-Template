@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Cobrança - Unimed Gerais de Minas</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/contenteditable.css">
+  </head>
+  <body>
+    
+    
+    <div class="loading"><div class="spinner"></div></div>
+
+
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	          <i class="fa fa-bars" style="color:#ccc"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+	  		<h1 align="center"><a href="index.html" class="logo"><img src="img/selo.png" width="140px"></img></a></h1>
+        <ul class="list-unstyled components mb-5">
+          <li >
+            <a href="/main"><span class="fa fa-user mr-3"></span> Destinatários</a>
+          </li>
+          <li class="active">
+              <a><span class="fa fa-sticky-note mr-3"></span> Mensagem</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Enviar</a>
+          </li>
+           <li>
+            <a href="/logout"><span class="fa fa-power-off mr-3"></span> Sair</a>
+          </li>
+        </ul>
+
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+        <h5 class="mb-2">Modelo Cartas</h5>
+
+        <div id="alertSalvo" class="pull-right"></div>
+
+        <p>Você pode editar o modelo abaixo:</p>
+
+        
+        <hr>
+
+        <div class="containereditor" >
+            <fieldset>
+ 
+              <button class="fontStyle italic" onclick="document.execCommand('italic',false,null);" title="Italicize Highlighted Text"><i class="fa fa-italic" aria-hidden="true"></i></button>
+              <button class="fontStyle bold" onclick="document.execCommand( 'bold',false,null);" title="Bold Highlighted Text"><i class="fa fa-bold" aria-hidden="true"></i></button>
+              <button class="fontStyle underline" onclick="document.execCommand( 'underline',false,null);"><i class="fa fa-underline" aria-hidden="true"></i></button>
+            
+              <select id="input-font" class="input"  onchange="changeFont (this);">
+                <option value="Arial">Arial</option>
+                <option value="Helvetica">Helvetica</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Sans serif">Sans serif</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Palatino">Palatino</option>
+                <option value="Garamond">Garamond</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+                <option value="Arial Black">Arial Black</option>
+                <option value="Tahoma">Tahoma</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+              </select>
+
+              <button class="fontStyle strikethrough" onclick="document.execCommand( 'strikethrough',false,null);"><i class="fa fa-strikethrough" aria-hidden="true"></i></button>
+              <button class="fontStyle align-left" onclick="document.execCommand( 'justifyLeft',false,null);"><i class="fa fa-align-left" aria-hidden="true"></i></button>
+              <button class="fontStyle align-center" onclick="document.execCommand( 'justifyCenter',false,null);"><i class="fa fa-align-center" aria-hidden="true"></i></button>
+              <button class="fontStyle align-right" onclick="document.execCommand( 'justifyRight',false,null);"><i class="fa fa-align-right" aria-hidden="true"></i></button>
+              <button class="fontStyle redo-apply" onclick="document.execCommand( 'redo',false,null);"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+              <button class="fontStyle undo-apply" onclick="document.execCommand( 'undo',false,null);"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+              <button class="fontStyle orderedlist" onclick="document.execCommand('insertOrderedList', false, null);"><i class="fa fa-list-ol" aria-hidden="true"></i></button>
+              <button class="fontStyle unorderedlist" onclick="document.execCommand('insertUnorderedList',false, null)"><i class="fa fa-list-ul" aria-hidden="true"></i></button>    
+              <input class="color-apply" type="color" onchange="chooseColor()" id="myColor"> 
+              <!-- font size start -->
+              <select id="fontSize" onclick="changeSize()">
+                <option value="1">1</option>      
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+              </select>
+              <!-- font size end -->   
+              
+              <button class="fontStyle italic" onclick="SaveModel1();" title="Salvar Modelo"><i class="fa fa-floppy-o" aria-hidden="true"> </i> </button>
+              <button class="fontStyle italic" onclick="print();" title="Imprimir Cartas"><i class="fa fa-print" aria-hidden="true"></i> </i> </button>
+
+          </fieldset>        
+          <div id="editor1" class="editor" contenteditable="true" data-text="Crie o Modelo!"></div>
+        </div>
+
+        <hr>
+
+        <h5>Emails</h5>
+
+        <div class="containereditor" >
+            <fieldset>
+ 
+              <button class="fontStyle italic" onclick="document.execCommand('italic',false,null);" title="Italicize Highlighted Text"><i class="fa fa-italic" aria-hidden="true"></i></button>
+              <button class="fontStyle bold" onclick="document.execCommand( 'bold',false,null);" title="Bold Highlighted Text"><i class="fa fa-bold" aria-hidden="true"></i></button>
+              <button class="fontStyle underline" onclick="document.execCommand( 'underline',false,null);"><i class="fa fa-underline" aria-hidden="true"></i></button>
+            
+              <select id="input-font" class="input"  onchange="changeFont (this);">
+                <option value="Arial">Arial</option>
+                <option value="Helvetica">Helvetica</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Sans serif">Sans serif</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Palatino">Palatino</option>
+                <option value="Garamond">Garamond</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+                <option value="Arial Black">Arial Black</option>
+                <option value="Tahoma">Tahoma</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+              </select>
+
+              <button class="fontStyle strikethrough" onclick="document.execCommand( 'strikethrough',false,null);"><i class="fa fa-strikethrough" aria-hidden="true"></i></button>
+              <button class="fontStyle align-left" onclick="document.execCommand( 'justifyLeft',false,null);"><i class="fa fa-align-left" aria-hidden="true"></i></button>
+              <button class="fontStyle align-center" onclick="document.execCommand( 'justifyCenter',false,null);"><i class="fa fa-align-center" aria-hidden="true"></i></button>
+              <button class="fontStyle align-right" onclick="document.execCommand( 'justifyRight',false,null);"><i class="fa fa-align-right" aria-hidden="true"></i></button>
+              <button class="fontStyle redo-apply" onclick="document.execCommand( 'redo',false,null);"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+              <button class="fontStyle undo-apply" onclick="document.execCommand( 'undo',false,null);"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+              <button class="fontStyle orderedlist" onclick="document.execCommand('insertOrderedList', false, null);"><i class="fa fa-list-ol" aria-hidden="true"></i></button>
+              <button class="fontStyle unorderedlist" onclick="document.execCommand('insertUnorderedList',false, null)"><i class="fa fa-list-ul" aria-hidden="true"></i></button>    
+              <input class="color-apply" type="color" onchange="chooseColor()" id="myColor"> 
+              <!-- font size start -->
+              <select id="fontSize" onclick="changeSize()">
+                <option value="1">1</option>      
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+              </select>
+              <!-- font size end -->   
+
+              <button class="fontStyle italic" onclick="SaveModel2();" title="Salvar Modelo"><i class="fa fa-floppy-o" aria-hidden="true"> </i> </button>
+              <button class="fontStyle italic" onclick="SendMails();" title="Enviar Emails"> <i class="fa fa-paper-plane" aria-hidden="true"></i> </button>
+
+
+          </fieldset>        
+          <div id="editor2" class="editor" contenteditable="true" data-text="Crie o Modelo!">
+           
+          
+
+          </div>
+        </div>
+
+
+        <br>
+        <!--<button type="button" class="btn btn-primary pull-right btn-sm"> <span class="fa fa-paper-plane mr-3"></span> Enviar</button> -->
+
+        <hr>
+          
+        <div id='autenticacao' align='center' style="font-size: 10px;opacity:0.5"></div>
+ 
+       </div>
+    </div>
+    
+
+
+
+    <script src="js/config.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/contenteditable.js"></script>
+  </body>
+</html>
