@@ -22,7 +22,6 @@ module.exports = {
       }
 },
 
-
 configoracle :{
   user: "oracleuser",  
   password: "oraclepasswd",  
