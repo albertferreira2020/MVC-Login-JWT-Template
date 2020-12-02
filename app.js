@@ -27,10 +27,6 @@ app.use(function(req, res, next) {
 app.use(compression());
 app.disable('x-powered-by');
 app.use(express.static(path.join(__dirname, 'src/views')));
- 
- //app.listen(5002, function () {
- //   console.log('Server is running port 5002..');
- //});
 
  https.createServer(options, app).listen(5002, function () {
   console.log('Server is running 5002..');
