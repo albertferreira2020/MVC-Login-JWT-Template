@@ -13,7 +13,6 @@ const options = {
   cert : fs.readFileSync('certified/certificate.crt')
 };
 
-
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(Router);
